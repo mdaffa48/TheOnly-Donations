@@ -1,0 +1,55 @@
+
+options:
+  useUUID: true
+
+# If head messages is disabled, we will use a message without the
+# head skin instead, and head messages message line are limit to only 8
+donationsMessage:
+  messageWithAvatar:
+    enabled: true
+    centered: true
+    messages:
+      line1: ""
+      line2: ""
+      line3: ""
+      line4: ""
+      line5: ""
+      line6: ""
+      line7: ""
+      line8: ""
+  messageWithoutAvatar:
+    centered: true
+    messages:
+      - ""
+      - "&6» &e&l%player_name% &7just purchased {product_name} &7($%price%)"
+      - "&6» Store: &7store.example.com"
+      - ""
+
+
+# A list of all events that are will be played
+# when donation happen.
+events:
+  effect:
+    enabled: true
+    effects:
+      - "SPEED;3;30"
+      - "JUMP;5;30"
+      - "FAST_DIGGING;3;30"
+      - "NIGHT_VISION;3;30"
+  sound:
+    enabled: true
+    sound: ENTITY_PLAYER_LEVELUP
+    volume: 1.0
+    pitch: 1.0
+  titleBar:
+    enabled: true
+    title: "&e&l{player} just donated!"
+    subTitle: "&fEveryone will receive special effects!"
+    fadeIn: 20
+    stay: 60
+    fadeOut: 20
+  command:
+    enabled: true
+    commands:
+      - "broadcast &aThanks {player} for the donation, everyone will receive a key!"
+      - "crazycrates giveall virtual vote 5"
