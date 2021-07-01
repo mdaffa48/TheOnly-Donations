@@ -22,8 +22,12 @@ public class DonationPlugin extends JavaPlugin {
     private final ProductManager productManager = new ProductManager();
     private QueueManager queueManager;
 
+    private static DonationPlugin instance;
+
     @Override
     public void onEnable(){
+        // Initialize the instance
+        instance = this;
         // Injecting the libs
         LazyLibs.inject(this);
         // Set the prefix of console messages
@@ -82,6 +86,10 @@ public class DonationPlugin extends JavaPlugin {
     private boolean versionCheck(){
         return Bukkit.getVersion().contains("1.16") ||
                 Bukkit.getVersion().contains("1.17");
+    }
+
+    public static DonationPlugin getInstance() {
+        return instance;
     }
 
     public ProductManager getProductManager() {
