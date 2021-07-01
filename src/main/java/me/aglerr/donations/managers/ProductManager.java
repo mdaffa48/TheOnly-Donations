@@ -17,6 +17,10 @@ public class ProductManager {
                 .findAny().orElse(null);
     }
 
+    public void addProduct(Product product){
+        this.productList.add(product);
+    }
+
     public List<String> getListOfProductName(){
         List<String> productsName = new ArrayList<>();
         this.productList.forEach(product -> productsName.add(product.getName()));
