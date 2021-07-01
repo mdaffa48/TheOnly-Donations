@@ -8,6 +8,7 @@ donationsMessage:
   messageWithAvatar:
     enabled: true
     messages:
+      header: " "
       line1: " &6» &l{player} &ejust donated!"
       line2: " &6» Store: &7store.example.com"
       line3: ""
@@ -16,6 +17,7 @@ donationsMessage:
       line6: ""
       line7: " &6Product: {product_displayname} &7(${product_price})"
       line8: " &7(( Help us keep the server alive! ))"
+      footer: " "
   messageWithoutAvatar:
     messages:
       - ""

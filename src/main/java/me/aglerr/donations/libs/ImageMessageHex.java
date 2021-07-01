@@ -1,8 +1,11 @@
 package me.aglerr.donations.libs;
 
 import de.themoep.minedown.MineDown;
+import de.themoep.minedown.Replacer;
 import me.aglerr.donations.ConfigValue;
 import me.aglerr.lazylibs.libs.Common;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -135,9 +138,7 @@ public class ImageMessageHex {
     public void sendToPlayers() {
         Bukkit.getOnlinePlayers().forEach(player -> {
             for(String line : lines){
-                player.sendMessage(Common.color(ConfigValue.HEADER));
                 player.spigot().sendMessage(MineDown.parse(line));
-                player.sendMessage(Common.color(ConfigValue.FOOTER));
             }
         });
     }
