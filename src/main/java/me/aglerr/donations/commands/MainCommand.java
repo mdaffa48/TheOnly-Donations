@@ -2,6 +2,7 @@ package me.aglerr.donations.commands;
 
 import me.aglerr.donations.DonationPlugin;
 import me.aglerr.donations.commands.abstraction.SubCommand;
+import me.aglerr.donations.commands.subcommand.ReloadCommand;
 import me.aglerr.donations.commands.subcommand.SendCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,6 +21,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
         this.plugin = plugin;
 
         subCommandMap.put("send", new SendCommand());
+        subCommandMap.put("reload", new ReloadCommand());
     }
 
     public void registerThisCommand(){
@@ -64,9 +66,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
         if(args.length == 1){
-            List<String> suggestions = new ArrayList<>();
-
-            return suggestions;
+            return Arrays.asList("send", "reload");
         }
 
         if(args.length >= 2){

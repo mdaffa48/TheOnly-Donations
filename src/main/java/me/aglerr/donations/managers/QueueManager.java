@@ -4,7 +4,7 @@ import me.aglerr.donations.objects.Product;
 import me.aglerr.donations.objects.QueueDonation;
 import me.aglerr.lazylibs.libs.Executor;
 import org.bukkit.OfflinePlayer;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +13,17 @@ public class QueueManager {
 
     private boolean IS_QUEUEING = false;
 
+    public QueueManager(){
+        startAnnounceTask();
+    }
+
     private final List<QueueDonation> queueDonations = new ArrayList<>();
 
-    public void addQueue(OfflinePlayer player, @Nullable Product product){
+    public void addQueue(OfflinePlayer player, @NotNull Product product){
         this.queueDonations.add(new QueueDonation(player, product));
     }
 
-    public void startAnnounceTask(){
+    protected void startAnnounceTask(){
         Executor.asyncTimer(0L, 20L, () -> {
             // Return if still queueing
             if(IS_QUEUEING) return;

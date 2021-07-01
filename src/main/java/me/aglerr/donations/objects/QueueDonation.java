@@ -1,11 +1,11 @@
 package me.aglerr.donations.objects;
 
+import me.aglerr.donations.managers.DonationGoal;
 import me.aglerr.donations.utils.Events;
 import me.aglerr.donations.utils.Utils;
 import me.aglerr.lazylibs.libs.Executor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class QueueDonation {
 
@@ -28,7 +28,8 @@ public class QueueDonation {
     }
 
     public void announceDonation(){
-        Executor.async(() -> Utils.broadcastDonation(this));
         Executor.sync(() -> Events.playAllEvents(this.getPlayer()));
+        Executor.sync(() -> DonationGoal.handleDonation(this.getProduct()));
+        Executor.async(() -> Utils.broadcastDonation(this));
     }
 }

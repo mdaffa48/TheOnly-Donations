@@ -1,5 +1,6 @@
 package me.aglerr.donations.utils;
 
+import com.google.common.base.Strings;
 import de.themoep.minedown.MineDown;
 import me.aglerr.donations.ConfigValue;
 import me.aglerr.donations.DonationPlugin;
@@ -13,7 +14,6 @@ import net.skinsrestorer.api.SkinsRestorerAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -45,10 +45,6 @@ public class Utils {
         }
     }
 
-    public static String getMinepicURL(Player player) {
-        return getMinepicURL(Bukkit.getOfflinePlayer(player.getUniqueId()));
-    }
-
     public static String getMinepicURL(OfflinePlayer player) {
         String url = "https://minepic.org/avatar/8/";
         // Check if SkinsRestorer is enabled
@@ -78,20 +74,16 @@ public class Utils {
                 // Check if hex color is enabled
                 if(DonationPlugin.HEX_AVAILABLE){
                     // Create an image message with hex color
-                    ImageMessageHex imageMessageHex = new ImageMessageHex(image, 8, ImageChar.BLOCK.getChar());
-                    // Append the additional text, centered or not
-                    imageMessageHex = ConfigValue.BROADCAST_AVATAR_CENTERED ?
-                            imageMessageHex.appendCenteredText(ConfigValue.donationAvatar(donation)) :
-                            imageMessageHex.appendText(ConfigValue.donationAvatar(donation));
+                    ImageMessageHex imageMessageHex = new ImageMessageHex(image, 8, ImageChar.BLOCK.getChar())
+                            // Append the additional text
+                            .appendText(ConfigValue.donationAvatar(donation));
                     // Finally broadcast the messages
                     imageMessageHex.sendToPlayers();
                 } else {
                     // Now, we do the code if the hex color isn't available
-                    ImageMessage imageMessage = new ImageMessage(image, 8, ImageChar.BLOCK.getChar());
-                    // Append the additional text, centered or not
-                    imageMessage = ConfigValue.BROADCAST_AVATAR_CENTERED ?
-                            imageMessage.appendCenteredText(ConfigValue.donationAvatar(donation)) :
-                            imageMessage.appendText(ConfigValue.donationAvatar(donation));
+                    ImageMessage imageMessage = new ImageMessage(image, 8, ImageChar.BLOCK.getChar())
+                            // Append the additional text
+                            .appendText(ConfigValue.donationAvatar(donation));
                     // Finally broadcast the message
                     imageMessage.sendToPlayers();
                 }
@@ -101,11 +93,14 @@ public class Utils {
                 //---------------------------------------------
                 // Check if the hex color is enabled
                 if(DonationPlugin.HEX_AVAILABLE){
-                    // Send the messages with hex color supports
-                    Bukkit.getOnlinePlayers().forEach(player -> ConfigValue.donationNoAvatar(donation).forEach(message ->
-                            player.spigot().sendMessage(MineDown.parse(message))));
+                    // First, loop through all online players
+                    Bukkit.getOnlinePlayers().forEach(player ->
+                            // Now, loop through all the messages
+                            ConfigValue.donationNoAvatar(donation).forEach(message ->
+                                    // Finally send the messages
+                                    player.spigot().sendMessage(MineDown.parse(message))));
                 } else {
-                    // Broadcast the message without hex color
+                    // Broadcast the message without hex color and not centered
                     ConfigValue.donationNoAvatar(donation).forEach(message ->
                             Bukkit.broadcastMessage(Common.color(message)));
                 }
@@ -114,6 +109,14 @@ public class Utils {
             Common.log(ChatColor.RED, "Failed to send a broadcast donation!");
             ex.printStackTrace();
         }
+    }
+
+    public static String getProgressBar(int current, int max, int totalBars, char symbol, ChatColor completedColor, ChatColor notCompletedColor){
+        float percent = (float) current/max;
+        int progressBars = (int) (totalBars * percent);
+
+        return Strings.repeat("" + completedColor + symbol, progressBars) +
+                Strings.repeat("" + notCompletedColor + symbol, totalBars - progressBars);
     }
 
 }

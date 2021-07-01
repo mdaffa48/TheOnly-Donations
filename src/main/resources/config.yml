@@ -7,23 +7,29 @@ options:
 donationsMessage:
   messageWithAvatar:
     enabled: true
-    centered: true
     messages:
-      line1: ""
-      line2: ""
+      header: " "
+      line1: " &6» &l{player} &ejust donated!"
+      line2: " &6» Store: &7store.example.com"
       line3: ""
-      line4: ""
-      line5: ""
+      line4: " &6&lMONTHLY GOAL &7(${goal_current_donation}/${goal_donation_goal})"
+      line5: " {goal_progress_bar} &7{goal_percentage}%"
       line6: ""
-      line7: ""
-      line8: ""
+      line7: " &6Product: {product_displayname} &7(${product_price})"
+      line8: " &7(( Help us keep the server alive! ))"
+      footer: " "
   messageWithoutAvatar:
-    centered: true
     messages:
       - ""
-      - "&6» &e&l%player_name% &7just purchased {product_name} &7($%price%)"
-      - "&6» Store: &7store.example.com"
+      - " &6» &l{player} &7just donated!"
+      - " &6» Store: &7store.example.com"
       - ""
+      - " &6&lMONTHLY GOAL &7(${goal_current_donation}/${goal_donation_goal})"
+      - " {goal_progress_bar} &7{goal_percentage}%"
+      - ""
+      - " &6Product: {product_displayname} &7(${product_price})"
+      - ""
+      - " &7(( Help us keep the server alive! ))"
 
 
 # A list of all events that are will be played
@@ -53,3 +59,14 @@ events:
     commands:
       - "broadcast &aThanks {player} for the donation, everyone will receive a key!"
       - "crazycrates giveall virtual vote 5"
+
+donationGoal:
+  enabled: true
+  donationGoal: 500
+  progressBar:
+    barLength: 15
+    symbol: '█'
+    completedColor: GREEN
+    notCompletedColor: RED
+  commandsOnReach:
+    - "broadcast &aWe have reached the donation goal!"

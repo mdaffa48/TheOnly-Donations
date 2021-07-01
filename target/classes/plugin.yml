@@ -3,7 +3,7 @@ version: 1.0
 api-version: 1.13
 author: aglerr
 main: me.aglerr.donations.DonationPlugin
-softdepend: [SkinsRestorer]
+softdepend: [SkinsRestorer, PlaceholderAPI]
 
 commands:
   donations:
