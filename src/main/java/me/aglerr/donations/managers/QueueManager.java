@@ -1,8 +1,10 @@
 package me.aglerr.donations.managers;
 
+import me.aglerr.donations.api.events.DonationPerformEvent;
 import me.aglerr.donations.objects.Product;
 import me.aglerr.donations.objects.QueueDonation;
 import me.aglerr.lazylibs.libs.Executor;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,6 +25,14 @@ public class QueueManager {
         this.queueDonations.add(new QueueDonation(player, product));
     }
 
+    public void addQueue(QueueDonation donation){
+        this.queueDonations.add(donation);
+    }
+
+    public boolean removeDonationFromQueue(QueueDonation donation){
+        return this.queueDonations.remove(donation);
+    }
+
     protected void startAnnounceTask(){
         Executor.asyncTimer(0L, 20L, () -> {
             // Return if still queueing
@@ -30,10 +40,17 @@ public class QueueManager {
             // Return if the queue is empty
             if(this.queueDonations.isEmpty()) return;
             // If the the plugin isn't queueing and queue donations isn't empty
-            // Set the IS_QUEUEING to true
-            IS_QUEUEING = true;
             // Get the queue donations first entry
             QueueDonation donation = this.queueDonations.get(0);
+            // Create the custom event
+            DonationPerformEvent event = new DonationPerformEvent(donation);
+            // Call the event
+            Bukkit.getPluginManager().callEvent(event);
+            // Stop the code if the event is cancelled
+            if(event.isCancelled())
+                return;
+            // Set the IS_QUEUEING to true
+            IS_QUEUEING = true;
             // Announce the donation message
             donation.announceDonation();
             // Remove the donation from the list
