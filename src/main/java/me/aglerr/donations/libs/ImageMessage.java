@@ -190,10 +190,10 @@ public class ImageMessage {
     }
 
     public void sendToPlayers() {
+        Bukkit.broadcastMessage(Common.color(ConfigValue.HEADER));
         for (String line : this.getLines()) {
-            Bukkit.broadcastMessage(Common.color(ConfigValue.HEADER));
             Bukkit.broadcastMessage(line);
-            Bukkit.broadcastMessage(Common.color(ConfigValue.FOOTER));
         }
+        Bukkit.broadcastMessage(Common.color(ConfigValue.FOOTER));
     }
 }

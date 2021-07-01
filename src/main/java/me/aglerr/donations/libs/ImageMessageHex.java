@@ -137,9 +137,11 @@ public class ImageMessageHex {
 
     public void sendToPlayers() {
         Bukkit.getOnlinePlayers().forEach(player -> {
+            player.spigot().sendMessage(MineDown.parse(ConfigValue.HEADER));
             for(String line : lines){
                 player.spigot().sendMessage(MineDown.parse(line));
             }
+            player.spigot().sendMessage(MineDown.parse(ConfigValue.FOOTER));
         });
     }
 }
