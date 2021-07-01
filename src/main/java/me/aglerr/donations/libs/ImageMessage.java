@@ -1,5 +1,7 @@
 package me.aglerr.donations.libs;
 
+import me.aglerr.donations.ConfigValue;
+import me.aglerr.lazylibs.libs.Common;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.util.ChatPaginator;
@@ -189,7 +191,9 @@ public class ImageMessage {
 
     public void sendToPlayers() {
         for (String line : this.getLines()) {
+            Bukkit.broadcastMessage(Common.color(ConfigValue.HEADER));
             Bukkit.broadcastMessage(line);
+            Bukkit.broadcastMessage(Common.color(ConfigValue.FOOTER));
         }
     }
 }
