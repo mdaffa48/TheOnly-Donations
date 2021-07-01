@@ -1,5 +1,6 @@
 package me.aglerr.donations.commands.subcommand;
 
+import me.aglerr.donations.ConfigValue;
 import me.aglerr.donations.DonationPlugin;
 import me.aglerr.donations.commands.abstraction.SubCommand;
 import me.aglerr.donations.managers.ProductManager;
@@ -45,7 +46,7 @@ public class SendCommand extends SubCommand {
         Product product = productManager.getProduct(args[2]);
         // Return if there is no product with that name
         if(product == null){
-            sender.sendMessage("That product isn't exist!");
+            sender.sendMessage(Common.color(ConfigValue.INVALID_PRODUCT));
             return;
         }
         // If the product is exist, add the donation to the queue
@@ -53,6 +54,8 @@ public class SendCommand extends SubCommand {
         QueueManager queueManager = plugin.getQueueManager();
         // Finally, add the donation to the queue
         queueManager.addQueue(player, product);
+        // Send a success message
+        sender.sendMessage(Common.color(ConfigValue.PERFORM_DONATION));
     }
 
 }

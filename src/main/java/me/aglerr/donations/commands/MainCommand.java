@@ -1,9 +1,11 @@
 package me.aglerr.donations.commands;
 
+import me.aglerr.donations.ConfigValue;
 import me.aglerr.donations.DonationPlugin;
 import me.aglerr.donations.commands.abstraction.SubCommand;
 import me.aglerr.donations.commands.subcommand.ReloadCommand;
 import me.aglerr.donations.commands.subcommand.SendCommand;
+import me.aglerr.lazylibs.libs.Common;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -34,7 +36,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
 
         // Return if the args length is 0 and send help messages
         if(args.length == 0){
-            sender.sendMessage("Help Messages");
+            this.sendHelpMessages(sender);
             return true;
         }
 
@@ -43,7 +45,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
 
         // Return if there is no subcommand with 'args[0]' and send help messages
         if(subCommand == null) {
-            sender.sendMessage("Help Messages");
+            this.sendHelpMessages(sender);
             return true;
         }
 
@@ -52,7 +54,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
             // Check if sender/player doesn't have permission for the subcommand
             if(!(sender.hasPermission(subCommand.getPermission()))){
                 // Return and send messages
-                sender.sendMessage("No Permission");
+                sender.sendMessage(Common.color(ConfigValue.NO_PERMISSION));
                 return true;
             }
         }
@@ -82,6 +84,11 @@ public class MainCommand implements CommandExecutor, TabCompleter {
             return new ArrayList<>();
         }
         return new ArrayList<>();
+    }
+
+    private void sendHelpMessages(CommandSender sender){
+        ConfigValue.HELP_MESSAGES.forEach(message ->
+                sender.sendMessage(Common.color(message)));
     }
 
 }
