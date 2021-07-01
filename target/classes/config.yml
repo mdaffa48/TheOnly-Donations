@@ -1,4 +1,5 @@
-
+# Full configuration explanation in wiki
+# Wiki: https://aglerr.gitbook.io/wiki/theonly-series/the-only-donations
 options:
   useUUID: true
 
@@ -8,7 +9,7 @@ donationsMessage:
   messageWithAvatar:
     enabled: true
     messages:
-      header: " "
+      header: "&rainbow:20&---------------------------------------"
       line1: " &6» &l{player} &ejust donated!"
       line2: " &6» Store: &7store.example.com"
       line3: ""
@@ -17,7 +18,7 @@ donationsMessage:
       line6: ""
       line7: " &6Product: {product_displayname} &7(${product_price})"
       line8: " &7(( Help us keep the server alive! ))"
-      footer: " "
+      footer: "&rainbow:20&---------------------------------------"
   messageWithoutAvatar:
     messages:
       - ""

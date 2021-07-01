@@ -7,7 +7,6 @@ import me.aglerr.donations.managers.DonationGoal;
 import me.aglerr.donations.objects.Product;
 import me.aglerr.donations.objects.QueueDonation;
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -43,6 +42,12 @@ public class ConfigValue {
     public static ChatColor PROGRESS_BAR_COMPLETED_COLOR;
     public static ChatColor PROGRESS_BAR_UNCOMPLETED_COLOR;
 
+    public static String NO_PERMISSION;
+    public static String RELOAD;
+    public static String INVALID_PRODUCT;
+    public static String PERFORM_DONATION;
+    public static List<String> HELP_MESSAGES;
+
     public static void initialize() {
         FileConfiguration config = ConfigManager.CONFIG.getConfig();
         USE_UUID = config.getBoolean("options.useUUID");
@@ -65,11 +70,15 @@ public class ConfigValue {
         PROGRESS_BAR_SYMBOL = config.getString("donationGoal.progressBar.symbol").charAt(0);
         PROGRESS_BAR_COMPLETED_COLOR = ChatColor.valueOf(config.getString("donationGoal.progressBar.completedColor"));
         PROGRESS_BAR_UNCOMPLETED_COLOR = ChatColor.valueOf(config.getString("donationGoal.progressBar.notCompletedColor"));
+        NO_PERMISSION = config.getString("messages.noPermission");
+        RELOAD = config.getString("messages.reload");
+        HELP_MESSAGES = config.getStringList("messages.help");
+        INVALID_PRODUCT = config.getString("messages.invalidProduct");
+        PERFORM_DONATION = config.getString("messages.performDonation");
     }
 
     public static String[] donationAvatar(QueueDonation donation) {
         return new String[]{
-                finalParse(HEADER, donation.getPlayer(), donation.getProduct()),
                 finalParse(LINE_1, donation.getPlayer(), donation.getProduct()),
                 finalParse(LINE_2, donation.getPlayer(), donation.getProduct()),
                 finalParse(LINE_3, donation.getPlayer(), donation.getProduct()),
@@ -77,8 +86,7 @@ public class ConfigValue {
                 finalParse(LINE_5, donation.getPlayer(), donation.getProduct()),
                 finalParse(LINE_6, donation.getPlayer(), donation.getProduct()),
                 finalParse(LINE_7, donation.getPlayer(), donation.getProduct()),
-                finalParse(LINE_8, donation.getPlayer(), donation.getProduct()),
-                finalParse(FOOTER, donation.getPlayer(), donation.getProduct())
+                finalParse(LINE_8, donation.getPlayer(), donation.getProduct())
         };
     }
 

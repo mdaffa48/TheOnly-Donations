@@ -1,4 +1,5 @@
-
+# Full configuration explanation in wiki
+# Wiki: https://aglerr.gitbook.io/wiki/theonly-series/the-only-donations
 options:
   useUUID: true
 
@@ -8,7 +9,7 @@ donationsMessage:
   messageWithAvatar:
     enabled: true
     messages:
-      header: " "
+      header: "&6&m--------------------------------------------"
       line1: " &6» &l{player} &ejust donated!"
       line2: " &6» Store: &7store.example.com"
       line3: ""
@@ -17,7 +18,7 @@ donationsMessage:
       line6: ""
       line7: " &6Product: {product_displayname} &7(${product_price})"
       line8: " &7(( Help us keep the server alive! ))"
-      footer: " "
+      footer: "&6&m--------------------------------------------"
   messageWithoutAvatar:
     messages:
       - ""
@@ -70,3 +71,14 @@ donationGoal:
     notCompletedColor: RED
   commandsOnReach:
     - "broadcast &aWe have reached the donation goal!"
+
+messages:
+  noPermission: "&cYou don't have enough permissions!"
+  reload: "&aYou have reloaded the configuration"
+  invalidProduct: "&cThere is no product with that name"
+  performDonation: "&aYou have perform a donation for &e{player}"
+  help:
+    - "&e&lDonations Help &7- by aglerr"
+    - "&e- /donations help &7- send this messages"
+    - "&e- /donations reload &7- reload the configuration"
+    - "&e- /donations send <player> <product> &7- perform a donation task in the server"
