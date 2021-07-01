@@ -1,10 +1,25 @@
 # Full configuration explanation in wiki
 # Wiki: https://aglerr.gitbook.io/wiki/theonly-series/the-only-donations
+####################################################################
+# (options)
+#   (useUUID) Should we use UUID when trying to get the player's head skin?
+#             (Recommended set this to 'false' if you're on a cracked server)
 options:
   useUUID: true
 
-# If head messages is disabled, we will use a message without the
-# head skin instead, and head messages message line are limit to only 8
+# Configuration Explanation
+# (donationsMessage)
+#   (messageWithAvatar)
+#     (enabled) Should we use avatar images when donation is broadcasted?
+#     (messages)
+#       (header....footer) Messages that will appear when donation is being broadcasted
+#   (messageWithoutAvatar)
+#     (messages) Messages that will appear when donation is being broadcasted
+#                 in condition if the (messageWithAvatar) is disabled.
+#                 You can add as many lines as you want.
+#
+# Are you interested in using hex color? Check the wiki for example!
+# Link: https://aglerr.gitbook.io/wiki/theonly-series/the-only-donations/plugins-files#example-usage
 donationsMessage:
   messageWithAvatar:
     enabled: true
@@ -33,8 +48,30 @@ donationsMessage:
       - " &7(( Help us keep the server alive! ))"
 
 
-# A list of all events that are will be played
-# when donation happen.
+# Configuration Explanation
+# (events) List of events that will be played on donation perform
+#   (effect) This event will give everyone a list of potions effects
+#     (enabled) Should we enabled this event?
+#     (effects) The list of potions effects that will be given to all players online
+#               Format: POTION;AMPLIFIER;(DURATION (in seconds))
+#               List of PotionEffectType https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionEffectType.html
+#   (sound) This event will play sound to all players online
+#     (enabled) Should we enabled this event?
+#     (sound) The sound name
+#     (volume) The volume of the sound
+#     (pitch) The pitch of the sound
+#   (titleBar) This event will send everyone a title bar message
+#     (enabled) Should we enabled this event?
+#     (title) The title of the title bar
+#     (subTitle) The sub title of the title bar
+#     (fadeIn) How long should the fade-in animation played? (in ticks - 20 ticks = 1 second)
+#     (stay) How long should the title bar displayed? (in ticks - 20 ticks = 1 second)
+#     (fadeOut) Howlong should the fade-out animation played? (in ticks - 20 ticks = 1 second)
+#   (command) This event will executed a command from console
+#     (enabled) Should we enabled this event?
+#     (commands) A list of commands that will get executed
+#                Available Placeholders:
+#                - {player} - return the donor's name
 events:
   effect:
     enabled: true
@@ -61,6 +98,32 @@ events:
       - "broadcast &aThanks {player} for the donation, everyone will receive a key!"
       - "crazycrates giveall virtual vote 5"
 
+# Configuration Explanation
+# (donationGoal)
+#   (enabled) Should we enable donation goal module?
+#   (donationGoal) How much is the donation goal?
+#   (progressBar)
+#     (barLength) How long is the progress bar?
+#     (symbol) The symbol that will be used for the progress bar (Recommended: '|' or '█')
+#     (completedColor) What is the completed color for the progress bar
+#     (notCompletedColor) What is the un-completed color for the progress bar
+#       Available Colors:
+#       - AQUA
+#       - BLACK
+#       - BLUE
+#       - DARK_AQUA
+#       - DARK_BLUE
+#       - DARK_GRAY
+#       - DARK_GREEN
+#       - DARK_PURPLE
+#       - DARK_RED
+#       - GOLD
+#       - GRAY
+#       - GREEN
+#       - LIGHT_PURPLE
+#       - RED
+#       - WHITE
+#       - YELLOW
 donationGoal:
   enabled: true
   donationGoal: 500
