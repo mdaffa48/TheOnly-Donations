@@ -7,6 +7,7 @@ import me.aglerr.donations.utils.Utils;
 import me.aglerr.lazylibs.LazyLibs;
 import me.aglerr.lazylibs.libs.Common;
 import me.aglerr.lazylibs.libs.ConfigUpdater;
+import me.aglerr.lazylibs.libs.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,6 +17,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DonationPlugin extends JavaPlugin {
+
+    private static int RESOURCE_ID = 73815;
 
     public static boolean HEX_AVAILABLE = false;
 
@@ -54,6 +57,8 @@ public class DonationPlugin extends JavaPlugin {
         HEX_AVAILABLE = versionCheck();
         // bStats metrics
         new Metrics(this, 10310);
+        // Run update checker
+        spigotUpdateChecker();
     }
 
     @Override
@@ -73,7 +78,16 @@ public class DonationPlugin extends JavaPlugin {
         DonationGoal.reloadDonationGoal();
     }
 
-    private void updateConfig(){
+    protected void spigotUpdateChecker(){
+        UpdateChecker.init(this, RESOURCE_ID)
+                .setDownloadLink("https://www.spigotmc.org/resources/73815/")
+                .setDonationLink("https://paypal.me/mdaffa48")
+                .setColoredConsoleOutput(true)
+                .setNotifyOpsOnJoin(true)
+                .checkNow();
+    }
+
+    protected void updateConfig(){
         File file = new File(this.getDataFolder(), "config.yml");
         try{
             ConfigUpdater.update(this, "config.yml", file, new ArrayList<>());
@@ -83,7 +97,7 @@ public class DonationPlugin extends JavaPlugin {
         }
     }
 
-    private boolean versionCheck(){
+    protected boolean versionCheck(){
         return Bukkit.getVersion().contains("1.16") ||
                 Bukkit.getVersion().contains("1.17");
     }

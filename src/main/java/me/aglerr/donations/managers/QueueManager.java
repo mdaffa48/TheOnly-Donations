@@ -44,8 +44,8 @@ public class QueueManager {
             QueueDonation donation = this.queueDonations.get(0);
             // Create the custom event
             DonationPerformEvent event = new DonationPerformEvent(donation);
-            // Call the event
-            Bukkit.getPluginManager().callEvent(event);
+            // Call the event in sync thread
+            Executor.sync(() -> Bukkit.getPluginManager().callEvent(event));
             // Stop the code if the event is cancelled
             if(event.isCancelled())
                 return;

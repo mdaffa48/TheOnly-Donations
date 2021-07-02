@@ -1,5 +1,6 @@
 package me.aglerr.donations.utils;
 
+import com.cryptomorin.xseries.messages.Titles;
 import me.aglerr.donations.DonationPlugin;
 import me.aglerr.lazylibs.LazyLibs;
 import me.aglerr.lazylibs.libs.Common;
@@ -88,7 +89,7 @@ public class Events {
         // Loop through all online players
         Bukkit.getOnlinePlayers().forEach(player -> {
             // Send the title bar messages
-            player.sendTitle(title, subTitle, fadeIn, stay, fadeOut);
+            Titles.sendTitle(player, fadeIn, stay, fadeOut, title, subTitle);
         });
     }
 
