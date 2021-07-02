@@ -55,7 +55,8 @@ public class SendCommand extends SubCommand {
         // Finally, add the donation to the queue
         queueManager.addQueue(player, product);
         // Send a success message
-        sender.sendMessage(Common.color(ConfigValue.PERFORM_DONATION));
+        sender.sendMessage(Common.color(ConfigValue.PERFORM_DONATION
+                .replace("{player}", args[1])));
     }
 
 }
