@@ -49,7 +49,10 @@ public class ProductManager {
             double price = config.getDouble("products." + productName + ".price");
             // After getting all the values, store them into the list
             productList.add(new Product(productName, displayName, price));
+            // Log to the console
+            Common.log(ChatColor.RESET, "Loaded " + productName + " product.");
         }
+        Common.log(ChatColor.RESET, "Successfully loaded all products!");
     }
 
 }
