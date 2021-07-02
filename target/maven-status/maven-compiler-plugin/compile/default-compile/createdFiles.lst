@@ -7,6 +7,7 @@ me\aglerr\donations\commands\MainCommand.class
 me\aglerr\donations\commands\subcommand\ReloadCommand.class
 me\aglerr\donations\utils\Events.class
 me\aglerr\donations\managers\ConfigManager.class
+me\aglerr\donations\api\DonationAPI.class
 me\aglerr\donations\ConfigValue.class
 me\aglerr\donations\metrics\Metrics$SimplePie.class
 me\aglerr\donations\managers\DependencyManager.class
@@ -19,6 +20,7 @@ me\aglerr\donations\metrics\Metrics$MultiLineChart.class
 me\aglerr\donations\metrics\Metrics$DrilldownPie.class
 me\aglerr\donations\libs\ImageMessage.class
 me\aglerr\donations\objects\Product.class
+me\aglerr\donations\api\events\DonationPerformEvent.class
 me\aglerr\donations\libs\ImageMessageHex.class
 me\aglerr\donations\managers\ProductManager.class
 me\aglerr\donations\metrics\Metrics$AdvancedPie.class
