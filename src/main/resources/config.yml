@@ -80,10 +80,7 @@ events:
       - "NIGHT_VISION;3;30"
   sounds:
     - "ENTITY_PLAYER_LEVELUP;1.0;1.0"
-    enabled: true
-    sound: ENTITY_PLAYER_LEVELUP
-    volume: 1.0
-    pitch: 1.0
+    - "BLOCK_LAVA_POP;1.0;1.0"
   titleBar:
     enabled: true
     title: "&e&l{player} just donated!"
