@@ -1,7 +1,7 @@
 package me.aglerr.donations.managers;
 
 import me.aglerr.donations.objects.Product;
-import me.aglerr.lazylibs.libs.Common;
+import me.aglerr.mclibs.libs.Common;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -37,10 +37,10 @@ public class ProductManager {
     public void loadProduct(){
         FileConfiguration config = ConfigManager.PRODUCT.getConfig();
         // Send a console message
-        Common.log(ChatColor.WHITE, "Loading all products...");
+        Common.log("&rLoading all products...");
         // Return if there are no products
         if(!config.isConfigurationSection("products")){
-            Common.log(ChatColor.RED, "Failed, because there are no products!");
+            Common.log("&cFailed, because there are no products!");
             return;
         }
         // If there are products, loop through the config section
@@ -50,9 +50,9 @@ public class ProductManager {
             // After getting all the values, store them into the list
             productList.add(new Product(productName, displayName, price));
             // Log to the console
-            Common.log(ChatColor.RESET, "Loaded " + productName + " product.");
+            Common.log("&rLoaded " + productName + " product.");
         }
-        Common.log(ChatColor.RESET, "Successfully loaded all products!");
+        Common.log("&rSuccessfully loaded all products!");
     }
 
 }
