@@ -1,6 +1,6 @@
 package me.aglerr.donations.managers;
 
-import me.aglerr.lazylibs.libs.CustomConfig;
+import me.aglerr.mclibs.libs.CustomConfig;
 
 public class ConfigManager {
 
