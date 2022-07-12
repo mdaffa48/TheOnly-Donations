@@ -2,6 +2,7 @@ package me.aglerr.donations.utils;
 
 import me.aglerr.donations.DonationPlugin;
 import me.aglerr.mclibs.libs.Common;
+import me.aglerr.mclibs.xseries.XSound;
 import me.aglerr.mclibs.xseries.messages.Titles;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -12,6 +13,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Events {
 
@@ -55,18 +57,31 @@ public class Events {
 
     public static void eventSound(){
         FileConfiguration config = plugin.getConfig();
-        // Return if the sound event is disabled
-        if(!config.getBoolean("events.sound.enabled")) return;
-        // Get the sound name from the config
-        Sound sound = Sound.valueOf(config.getString("events.sound.sound"));
-        // Get the volume
-        float volume = (float) config.getDouble("events.sound.volume");
-        // Get the pitch
-        float pitch = (float) config.getDouble("events.sound.pitch");
+        // Get all the sounds
+        List<String> sounds = config.getStringList("events.sounds");
         // Loop through all online players
         Bukkit.getOnlinePlayers().forEach(player -> {
-            // Play the sound
-            player.playSound(player.getLocation(), sound, volume, pitch);
+            // Loop through all sounds
+            for(String soundString : sounds){
+                String[] section = soundString.split(";");
+                // Get the sound type
+                Optional<XSound> xSound = XSound.matchXSound(section[0]);
+                // Skip if the sound type doesn't exist
+                if (!xSound.isPresent()) {
+                    continue;
+                }
+                Sound sound = xSound.get().parseSound();
+                // If the sound still not exist, skip
+                if (sound == null) {
+                    continue;
+                }
+                // Get the volume of the sound
+                double volume = Double.parseDouble(section[1]);
+                // Get the pitch of the sound
+                double pitch = Double.parseDouble(section[2]);
+                // Play the sound
+                player.playSound(player.getLocation(), sound, (float) volume, (float) pitch);
+            }
         });
     }
 
