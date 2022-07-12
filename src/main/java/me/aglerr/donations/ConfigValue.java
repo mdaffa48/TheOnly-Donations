@@ -1,11 +1,11 @@
 package me.aglerr.donations;
 
-import de.themoep.minedown.MineDown;
 import me.aglerr.donations.managers.ConfigManager;
 import me.aglerr.donations.managers.DependencyManager;
 import me.aglerr.donations.managers.DonationGoal;
 import me.aglerr.donations.objects.Product;
 import me.aglerr.donations.objects.QueueDonation;
+import me.aglerr.mclibs.libs.Common;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
@@ -98,25 +98,11 @@ public class ConfigValue {
     }
 
     private static String finalParse(String string, OfflinePlayer player, Product product){
-        // Check if hex is available on the server
-        if(DonationPlugin.HEX_AVAILABLE){
-            // Create a message with hex color parsed
-            String hex = TextComponent.toLegacyText(MineDown.parse(parseProduct(string, player, product)));
-            // Check if placeholder api isn't enabled
-            if(!DependencyManager.PLACEHOLDER_API_ENABLED)
-                // Return the hex message if placeholder api is not enabled
-                return hex;
-            // Return the value with placeholder api parsed
-            return placeholderAPI(hex, player, product);
+        String text = Common.color(string);
+        if (!DependencyManager.PLACEHOLDER_API_ENABLED) {
+            return parseProduct(text, player, product);
         }
-        // Code if the hex isn't available on the server
-        //----------------------------------------
-        // Check if placeholder api isn't enabled on the server
-        if(!DependencyManager.PLACEHOLDER_API_ENABLED)
-            // Return the parsed product value
-            return parseProduct(string, player, product);
-        // If placeholder api is enabled on the server, return the papi parsed value
-        return placeholderAPI(string, player, product);
+        return placeholderAPI(text, player, product);
     }
 
     private static String placeholderAPI(String string, OfflinePlayer player, Product product){
