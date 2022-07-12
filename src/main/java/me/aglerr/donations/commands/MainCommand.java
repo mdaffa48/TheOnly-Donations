@@ -5,7 +5,7 @@ import me.aglerr.donations.DonationPlugin;
 import me.aglerr.donations.commands.abstraction.SubCommand;
 import me.aglerr.donations.commands.subcommand.ReloadCommand;
 import me.aglerr.donations.commands.subcommand.SendCommand;
-import me.aglerr.lazylibs.libs.Common;
+import me.aglerr.mclibs.libs.Common;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -54,7 +54,7 @@ public class MainCommand implements CommandExecutor, TabCompleter {
             // Check if sender/player doesn't have permission for the subcommand
             if(!(sender.hasPermission(subCommand.getPermission()))){
                 // Return and send messages
-                sender.sendMessage(Common.color(ConfigValue.NO_PERMISSION));
+                Common.sendMessage(sender, ConfigValue.NO_PERMISSION);
                 return true;
             }
         }

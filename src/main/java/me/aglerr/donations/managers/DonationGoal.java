@@ -3,8 +3,8 @@ package me.aglerr.donations.managers;
 import me.aglerr.donations.ConfigValue;
 import me.aglerr.donations.objects.Product;
 import me.aglerr.donations.utils.Utils;
-import me.aglerr.lazylibs.libs.Common;
-import me.aglerr.lazylibs.libs.CustomConfig;
+import me.aglerr.mclibs.libs.Common;
+import me.aglerr.mclibs.libs.CustomConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -24,7 +24,7 @@ public class DonationGoal {
     }
 
     public static String getDonationPercentage(){
-        return Common.numberFormat(((currentDonation / donationGoal) * 100));
+        return Common.digits(((currentDonation / donationGoal) * 100));
     }
 
     public static void handleDonation(Product product){
@@ -62,11 +62,11 @@ public class DonationGoal {
     }
 
     public static String getDonationGoal(){
-        return Common.numberFormat(donationGoal);
+        return Common.digits(donationGoal);
     }
 
     public static String getCurrentDonation(){
-        return Common.numberFormat(currentDonation);
+        return Common.digits(currentDonation);
     }
 
 }

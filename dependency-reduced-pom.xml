@@ -8,7 +8,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>3.3.0</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -20,12 +20,8 @@
         <configuration>
           <relocations>
             <relocation>
-              <pattern>de.themoep.minedown</pattern>
-              <shadedPattern>me.aglerr.donations.libs</shadedPattern>
-            </relocation>
-            <relocation>
-              <pattern>me.aglerr.lazylibs</pattern>
-              <shadedPattern>me.aglerr.donations.libs</shadedPattern>
+              <pattern>me.aglerr.mclibs</pattern>
+              <shadedPattern>me.aglerr.donation.mclibs</shadedPattern>
             </relocation>
           </relocations>
         </configuration>
@@ -38,12 +34,8 @@
       <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
     </repository>
     <repository>
-      <id>minebench-repo</id>
-      <url>https://repo.minebench.de/</url>
-    </repository>
-    <repository>
-      <id>codemc-snapshots</id>
-      <url>https://repo.codemc.org/repository/maven-snapshots/</url>
+      <id>codemc-releases</id>
+      <url>https://repo.codemc.org/repository/maven-releases/</url>
     </repository>
     <repository>
       <id>placeholderapi</id>
@@ -54,114 +46,20 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <version>1.17-R0.1-SNAPSHOT</version>
+      <version>1.19-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>commons-lang</artifactId>
-          <groupId>commons-lang</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>guava</artifactId>
-          <groupId>com.google.guava</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>gson</artifactId>
-          <groupId>com.google.code.gson</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>bungeecord-chat</artifactId>
-          <groupId>net.md-5</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>snakeyaml</artifactId>
-          <groupId>org.yaml</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>net.skinsrestorer</groupId>
-      <artifactId>skinsrestorer</artifactId>
-      <version>14.1.1-SNAPSHOT</version>
+      <artifactId>skinsrestorer-api</artifactId>
+      <version>14.2.1</version>
       <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>bungeecord-config</artifactId>
-          <groupId>net.md-5</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>bstats-bukkit</artifactId>
-          <groupId>org.bstats</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>bstats-bungeecord</artifactId>
-          <groupId>org.bstats</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>bstats-sponge</artifactId>
-          <groupId>org.bstats</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>bstats-velocity</artifactId>
-          <groupId>org.bstats</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>bukkit</artifactId>
-          <groupId>org.inventivetalent.spiget-update</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>acf-paper</artifactId>
-          <groupId>co.aikar</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>acf-bungee</artifactId>
-          <groupId>co.aikar</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>acf-sponge</artifactId>
-          <groupId>co.aikar</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>acf-velocity</artifactId>
-          <groupId>co.aikar</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>mysql-connector-java</artifactId>
-          <groupId>mysql</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>XSeries</artifactId>
-          <groupId>com.github.cryptomorin</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>paperlib</artifactId>
-          <groupId>io.papermc</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>minecraft-timings</artifactId>
-          <groupId>co.aikar</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>j9-reflection-utils</artifactId>
-          <groupId>com.gilecode.yagson</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>gson</artifactId>
-          <groupId>com.google.code.gson</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>me.clip</groupId>
       <artifactId>placeholderapi</artifactId>
-      <version>2.10.9</version>
+      <version>2.11.1</version>
       <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>annotations</artifactId>
-          <groupId>org.jetbrains</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
   <properties>
@@ -169,4 +67,3 @@
     <maven.compiler.target>8</maven.compiler.target>
   </properties>
 </project>
-
