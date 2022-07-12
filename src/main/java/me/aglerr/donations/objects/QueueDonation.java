@@ -3,7 +3,7 @@ package me.aglerr.donations.objects;
 import me.aglerr.donations.managers.DonationGoal;
 import me.aglerr.donations.utils.Events;
 import me.aglerr.donations.utils.Utils;
-import me.aglerr.lazylibs.libs.Executor;
+import me.aglerr.mclibs.libs.Executor;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
