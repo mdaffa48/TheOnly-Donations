@@ -1,13 +1,13 @@
 package me.aglerr.donations.utils;
 
 import me.aglerr.donations.DonationPlugin;
-import me.aglerr.lazylibs.LazyLibs;
-import me.aglerr.lazylibs.libs.Common;
-import me.aglerr.lazylibs.libs.messages.Titles;
+import me.aglerr.mclibs.libs.Common;
+import me.aglerr.mclibs.xseries.messages.Titles;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Events {
 
-    private static final DonationPlugin plugin = (DonationPlugin) LazyLibs.getInstance();
+    private static final DonationPlugin plugin = JavaPlugin.getPlugin(DonationPlugin.class);
 
     public static void playAllEvents(OfflinePlayer player){
         eventEffects();
