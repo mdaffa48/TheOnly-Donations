@@ -98,11 +98,10 @@ public class ConfigValue {
     }
 
     private static String finalParse(String string, OfflinePlayer player, Product product){
-        String text = Common.color(string);
         if (!DependencyManager.PLACEHOLDER_API_ENABLED) {
-            return parseProduct(text, player, product);
+            return Common.color(parseProduct(string, player, product));
         }
-        return placeholderAPI(text, player, product);
+        return Common.color(placeholderAPI(string, player, product));
     }
 
     private static String placeholderAPI(String string, OfflinePlayer player, Product product){
