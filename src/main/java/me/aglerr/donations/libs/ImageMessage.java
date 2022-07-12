@@ -1,7 +1,7 @@
 package me.aglerr.donations.libs;
 
 import me.aglerr.donations.ConfigValue;
-import me.aglerr.lazylibs.libs.Common;
+import me.aglerr.mclibs.libs.Common;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.util.ChatPaginator;

@@ -1,14 +1,9 @@
 package me.aglerr.donations.libs;
 
-import de.themoep.minedown.MineDown;
-import de.themoep.minedown.Replacer;
 import me.aglerr.donations.ConfigValue;
-import me.aglerr.lazylibs.libs.Common;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
+import me.aglerr.mclibs.minedown.MineDown;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.util.ChatPaginator;
 
 import java.awt.*;
