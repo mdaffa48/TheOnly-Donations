@@ -3,7 +3,7 @@ package me.aglerr.donations.managers;
 import me.aglerr.donations.api.events.DonationPerformEvent;
 import me.aglerr.donations.objects.Product;
 import me.aglerr.donations.objects.QueueDonation;
-import me.aglerr.lazylibs.libs.Executor;
+import me.aglerr.mclibs.libs.Executor;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
