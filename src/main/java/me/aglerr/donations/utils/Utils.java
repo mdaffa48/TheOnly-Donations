@@ -1,7 +1,6 @@
 package me.aglerr.donations.utils;
 
 import com.google.common.base.Strings;
-import de.themoep.minedown.MineDown;
 import me.aglerr.donations.ConfigValue;
 import me.aglerr.donations.DonationPlugin;
 import me.aglerr.donations.libs.ImageChar;
@@ -9,7 +8,7 @@ import me.aglerr.donations.libs.ImageMessage;
 import me.aglerr.donations.libs.ImageMessageHex;
 import me.aglerr.donations.managers.DependencyManager;
 import me.aglerr.donations.objects.QueueDonation;
-import me.aglerr.lazylibs.libs.Common;
+import me.aglerr.mclibs.libs.Common;
 import net.skinsrestorer.api.SkinsRestorerAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -72,41 +71,41 @@ public class Utils {
             // Check if broadcast avatar is enabled
             if(ConfigValue.BROADCAST_AVATAR_ENABLED){
                 // Check if hex color is enabled
-                if(DonationPlugin.HEX_AVAILABLE){
+                /*if(DonationPlugin.HEX_AVAILABLE){
                     // Create an image message with hex color
                     ImageMessageHex imageMessageHex = new ImageMessageHex(image, 8, ImageChar.BLOCK.getChar())
                             // Append the additional text
                             .appendText(ConfigValue.donationAvatar(donation));
                     // Finally broadcast the messages
                     imageMessageHex.sendToPlayers();
-                } else {
+                } else {*/
                     // Now, we do the code if the hex color isn't available
                     ImageMessage imageMessage = new ImageMessage(image, 8, ImageChar.BLOCK.getChar())
                             // Append the additional text
                             .appendText(ConfigValue.donationAvatar(donation));
                     // Finally broadcast the message
                     imageMessage.sendToPlayers();
-                }
+                //}
             } else {
                 //---------------------------------------------
                 // Code when avatar message is disabled
                 //---------------------------------------------
                 // Check if the hex color is enabled
-                if(DonationPlugin.HEX_AVAILABLE){
+                /*if(DonationPlugin.HEX_AVAILABLE){
                     // First, loop through all online players
                     Bukkit.getOnlinePlayers().forEach(player ->
                             // Now, loop through all the messages
                             ConfigValue.donationNoAvatar(donation).forEach(message ->
                                     // Finally send the messages
                                     player.spigot().sendMessage(MineDown.parse(message))));
-                } else {
+                } else {*/
                     // Broadcast the message without hex color and not centered
                     ConfigValue.donationNoAvatar(donation).forEach(message ->
                             Bukkit.broadcastMessage(Common.color(message)));
-                }
+                //}
             }
         } catch (IOException ex) {
-            Common.log(ChatColor.RED, "Failed to send a broadcast donation!");
+            Common.log("&cFailed to send a broadcast donation!");
             ex.printStackTrace();
         }
     }
