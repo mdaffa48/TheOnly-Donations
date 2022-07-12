@@ -7,6 +7,7 @@ import me.aglerr.donations.utils.Utils;
 import me.aglerr.mclibs.MCLibs;
 import me.aglerr.mclibs.libs.Common;
 import me.aglerr.mclibs.libs.ConfigUpdater;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DonationPlugin extends JavaPlugin {
+
+    public static boolean HEX_AVAILABLE = false;
 
     private final ProductManager productManager = new ProductManager();
     private QueueManager queueManager;
@@ -48,6 +51,10 @@ public class DonationPlugin extends JavaPlugin {
         new MainCommand(this).registerThisCommand();
         // bStats metrics
         new Metrics(this, 10310);
+        HEX_AVAILABLE = Bukkit.getVersion().contains("1.16") ||
+                Bukkit.getVersion().contains("1.17") ||
+                Bukkit.getVersion().contains("1.18") ||
+                Bukkit.getVersion().contains("1.19");
     }
 
     @Override
