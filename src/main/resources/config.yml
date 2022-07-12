@@ -55,11 +55,9 @@ donationsMessage:
 #     (effects) The list of potions effects that will be given to all players online
 #               Format: POTION;AMPLIFIER;(DURATION (in seconds))
 #               List of PotionEffectType https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionEffectType.html
-#   (sound) This event will play sound to all players online
-#     (enabled) Should we enabled this event?
-#     (sound) The sound name
-#     (volume) The volume of the sound
-#     (pitch) The pitch of the sound
+#   (sound) The list of sounds that will be played upon donation
+#           Format: SOUND_NAME;VOLUME;PITCH
+#           List of Sounds: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
 #   (titleBar) This event will send everyone a title bar message
 #     (enabled) Should we enabled this event?
 #     (title) The title of the title bar
@@ -80,7 +78,8 @@ events:
       - "JUMP;5;30"
       - "FAST_DIGGING;3;30"
       - "NIGHT_VISION;3;30"
-  sound:
+  sounds:
+    - "ENTITY_PLAYER_LEVELUP;1.0;1.0"
     enabled: true
     sound: ENTITY_PLAYER_LEVELUP
     volume: 1.0
