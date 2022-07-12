@@ -6,7 +6,7 @@ import me.aglerr.donations.commands.abstraction.SubCommand;
 import me.aglerr.donations.managers.ProductManager;
 import me.aglerr.donations.managers.QueueManager;
 import me.aglerr.donations.objects.Product;
-import me.aglerr.lazylibs.libs.Common;
+import me.aglerr.mclibs.libs.Common;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -24,7 +24,7 @@ public class SendCommand extends SubCommand {
     @Override
     public List<String> parseTabCompletion(DonationPlugin plugin, CommandSender sender, String[] args) {
         if(args.length == 2){
-            return Common.getOnlinePlayersByName();
+            return null;
         }
         if(args.length == 3){
             return plugin.getProductManager().getListOfProductName();
@@ -49,7 +49,7 @@ public class SendCommand extends SubCommand {
             sender.sendMessage(Common.color(ConfigValue.INVALID_PRODUCT));
             return;
         }
-        // If the product is exist, add the donation to the queue
+        // If the product is existed, add the donation to the queue
         // First, get the queue manager
         QueueManager queueManager = plugin.getQueueManager();
         // Finally, add the donation to the queue
