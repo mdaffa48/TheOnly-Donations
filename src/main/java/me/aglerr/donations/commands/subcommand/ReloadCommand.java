@@ -3,13 +3,14 @@ package me.aglerr.donations.commands.subcommand;
 import me.aglerr.donations.ConfigValue;
 import me.aglerr.donations.DonationPlugin;
 import me.aglerr.donations.commands.abstraction.SubCommand;
-import me.aglerr.lazylibs.libs.Common;
+import me.aglerr.mclibs.libs.Common;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReloadCommand extends SubCommand {
+
     @Override
     public String getPermission() {
         return "donations.admin";
@@ -23,6 +24,7 @@ public class ReloadCommand extends SubCommand {
     @Override
     public void execute(DonationPlugin plugin, CommandSender sender, String[] args) {
         plugin.reloadEverything();
-        sender.sendMessage(Common.color(ConfigValue.RELOAD));
+        Common.sendMessage(sender, ConfigValue.RELOAD);
     }
+
 }
