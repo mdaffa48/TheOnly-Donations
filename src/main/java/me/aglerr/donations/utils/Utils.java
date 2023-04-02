@@ -46,7 +46,7 @@ public class Utils {
     }
 
     public static String getMinepicURL(OfflinePlayer player) {
-        String url = "https://minepic.org/avatar/8/";
+        String url = "https://minepic.org/avatar/";
         // Check if SkinsRestorer is enabled
         if (DependencyManager.SKINS_RESTORER_ENABLED) {
             // Get the SkinsRestorerAPI
@@ -57,7 +57,7 @@ public class Utils {
             // Code if the server doesn't use skins restorer
             url = url + (ConfigValue.USE_UUID ? player.getUniqueId().toString() : player.getName());
         }
-        return url;
+        return url + "/8";
     }
 
     /**
