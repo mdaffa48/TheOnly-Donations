@@ -10,7 +10,9 @@ import me.aglerr.donations.managers.DependencyManager;
 import me.aglerr.donations.objects.QueueDonation;
 import me.aglerr.mclibs.libs.Common;
 import me.aglerr.mclibs.minedown.MineDown;
-import net.skinsrestorer.api.SkinsRestorerAPI;
+import net.skinsrestorer.api.SkinsRestorer;
+import net.skinsrestorer.api.SkinsRestorerProvider;
+import net.skinsrestorer.api.property.SkinIdentifier;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -19,6 +21,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 
 public class Utils {
 
@@ -50,9 +53,10 @@ public class Utils {
         // Check if SkinsRestorer is enabled
         if (DependencyManager.SKINS_RESTORER_ENABLED) {
             // Get the SkinsRestorerAPI
-            SkinsRestorerAPI api = SkinsRestorerAPI.getApi();
+            SkinsRestorer api = DonationPlugin.getSkinsApi();
+            Optional<SkinIdentifier> optional = api.getPlayerStorage().getSkinIdOfPlayer(player.getUniqueId());
             // If the player is wearing skin, get the skin name
-            url = url + (api.hasSkin(player.getName()) ? api.getSkinName(player.getName()) : player.getName());
+            url = url + (optional.isPresent() ? optional.get().getIdentifier() : player.getName());
         } else {
             // Code if the server doesn't use skins restorer
             url = url + (ConfigValue.USE_UUID ? player.getUniqueId().toString() : player.getName());

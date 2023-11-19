@@ -7,6 +7,8 @@ import me.aglerr.donations.utils.Utils;
 import me.aglerr.mclibs.MCLibs;
 import me.aglerr.mclibs.libs.Common;
 import me.aglerr.mclibs.libs.ConfigUpdater;
+import net.skinsrestorer.api.SkinsRestorer;
+import net.skinsrestorer.api.SkinsRestorerProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,11 +24,13 @@ public class DonationPlugin extends JavaPlugin {
     private QueueManager queueManager;
 
     private static DonationPlugin instance;
+    private static SkinsRestorer skinsApi;
 
     @Override
     public void onEnable(){
         // Initialize the instance
         instance = this;
+        skinsApi = SkinsRestorerProvider.get();
         // Injecting the libs
         MCLibs.init(this);
         // Set the prefix of console messages
@@ -86,6 +90,10 @@ public class DonationPlugin extends JavaPlugin {
 
     public static DonationPlugin getInstance() {
         return instance;
+    }
+
+    public static SkinsRestorer getSkinsApi() {
+        return skinsApi;
     }
 
     public ProductManager getProductManager() {
