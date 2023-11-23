@@ -24,13 +24,11 @@ public class DonationPlugin extends JavaPlugin {
     private QueueManager queueManager;
 
     private static DonationPlugin instance;
-    private static SkinsRestorer skinsApi;
 
     @Override
     public void onEnable(){
         // Initialize the instance
         instance = this;
-        skinsApi = SkinsRestorerProvider.get();
         // Injecting the libs
         MCLibs.init(this);
         // Set the prefix of console messages
@@ -93,7 +91,7 @@ public class DonationPlugin extends JavaPlugin {
     }
 
     public static SkinsRestorer getSkinsApi() {
-        return skinsApi;
+        return SkinsRestorerProvider.get();
     }
 
     public ProductManager getProductManager() {
