@@ -22,6 +22,11 @@
       <option name="url" value="https://repo.codemc.org/repository/maven-releases/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="jitpack.io" />
+      <option name="name" value="jitpack.io" />
+      <option name="url" value="https://jitpack.io/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="minebench-repo" />
       <option name="name" value="minebench-repo" />
       <option name="url" value="https://repo.minebench.de/" />

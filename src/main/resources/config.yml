@@ -136,8 +136,10 @@ messages:
   reload: "&aYou have reloaded the configuration"
   invalidProduct: "&cThere is no product with that name"
   performDonation: "&aYou have perform a donation for &e{player}"
+  reset: "&aYou have resetted the Current Donation"
   help:
     - "&e&lDonations Help &7- by aglerr"
     - "&e- /donations help &7- send this messages"
     - "&e- /donations reload &7- reload the configuration"
+    - "&e- /donations reset &7- reset the current donation &c(EXPERIMENTAL)"
     - "&e- /donations send <player> <product> &7- perform a donation task in the server"

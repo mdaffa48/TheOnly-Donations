@@ -6,7 +6,7 @@
 
     <groupId>me.aglerr.donations</groupId>
     <artifactId>TheOnly-Donations</artifactId>
-    <version>3.0.3</version>
+    <version>4.0.0</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -14,16 +14,26 @@
     </properties>
 
     <build>
+        <defaultGoal>clean package</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.6.0</version>
                 <configuration>
                     <relocations>
                         <relocation>
-                            <pattern>me.aglerr.mclibs</pattern>
-                            <shadedPattern>me.aglerr.donation.mclibs</shadedPattern>
+                            <pattern>me.aglerr.mdlib</pattern>
+                            <shadedPattern>me.aglerr.donation.mdlib</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -53,6 +63,10 @@
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -63,10 +77,11 @@
             <version>1.20.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!-- mdlib -->
         <dependency>
-            <groupId>me.aglerr.mclibs</groupId>
-            <artifactId>MCLibs</artifactId>
-            <version>0.1.7</version>
+            <groupId>com.github.mdaffa48</groupId>
+            <artifactId>MDLib</artifactId>
+            <version>2.0.9</version>
         </dependency>
         <!-- SkinsRestorer API -->
         <dependency>
