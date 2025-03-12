@@ -1,11 +1,10 @@
 package me.aglerr.donations.api;
 
+import com.muhammaddaffa.mdlib.utils.Config;
 import me.aglerr.donations.DonationPlugin;
-import me.aglerr.donations.managers.ConfigManager;
 import me.aglerr.donations.managers.ProductManager;
 import me.aglerr.donations.objects.Product;
 import me.aglerr.donations.objects.QueueDonation;
-import me.aglerr.mclibs.libs.CustomConfig;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.jetbrains.annotations.NotNull;
@@ -62,11 +61,11 @@ public class DonationAPI {
         // Create the product object
         Product product = new Product(name, displayName, price);
         // Add product to the list
-        productManager.addProduct(product);
+        productManager.addProduct(name, product);
         // Should we save the product to the configuration?
         // Recommended if you want it to persist on restart
         if(save){
-            CustomConfig productConfig = ConfigManager.PRODUCT;
+            Config productConfig = DonationPlugin.PRODUCT_CONFIG;
             FileConfiguration config = productConfig.getConfig();
             // Set the display name
             config.set("products." + name + ".displayName", displayName);

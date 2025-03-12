@@ -1,11 +1,10 @@
 package me.aglerr.donations;
 
-import me.aglerr.donations.managers.ConfigManager;
+import com.muhammaddaffa.mdlib.utils.Common;
 import me.aglerr.donations.managers.DependencyManager;
 import me.aglerr.donations.managers.DonationGoal;
 import me.aglerr.donations.objects.Product;
 import me.aglerr.donations.objects.QueueDonation;
-import me.aglerr.mclibs.libs.Common;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
@@ -49,7 +48,7 @@ public class ConfigValue {
     public static List<String> HELP_MESSAGES;
 
     public static void initialize() {
-        FileConfiguration config = ConfigManager.CONFIG.getConfig();
+        FileConfiguration config = DonationPlugin.DEFAULT_CONFIG.getConfig();
         USE_UUID = config.getBoolean("options.useUUID");
         BROADCAST_AVATAR_ENABLED = config.getBoolean("donationsMessage.messageWithAvatar.enabled");
         HEADER = config.getString("donationsMessage.messageWithAvatar.messages.header");

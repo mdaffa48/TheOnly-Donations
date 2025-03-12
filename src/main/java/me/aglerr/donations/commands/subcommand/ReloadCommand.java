@@ -1,9 +1,9 @@
 package me.aglerr.donations.commands.subcommand;
 
+import com.muhammaddaffa.mdlib.utils.Common;
 import me.aglerr.donations.ConfigValue;
 import me.aglerr.donations.DonationPlugin;
 import me.aglerr.donations.commands.abstraction.SubCommand;
-import me.aglerr.mclibs.libs.Common;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;

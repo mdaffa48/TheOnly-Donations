@@ -1,9 +1,8 @@
 package me.aglerr.donations.utils;
 
+import com.muhammaddaffa.mdlib.utils.Common;
+import com.muhammaddaffa.mdlib.xseries.XSound;
 import me.aglerr.donations.DonationPlugin;
-import me.aglerr.mclibs.libs.Common;
-import me.aglerr.mclibs.xseries.XSound;
-import me.aglerr.mclibs.xseries.messages.Titles;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
@@ -104,7 +103,7 @@ public class Events {
         // Loop through all online players
         Bukkit.getOnlinePlayers().forEach(player -> {
             // Send the title bar messages
-            Titles.sendTitle(player, fadeIn, stay, fadeOut, title, subTitle);
+            Common.sendTitle(player, title, subTitle, fadeIn, stay, fadeOut);
         });
     }
 

@@ -1,10 +1,8 @@
 name: TheOnly-Donations
-version: 3.0.3
+version: 4.0.0
 api-version: 1.13
-author: aglerr
+author: aglerr, starfruit2210
 main: me.aglerr.donations.DonationPlugin
-softdepend: [SkinsRestorer, PlaceholderAPI]
-
-commands:
-  donations:
-    aliases: [donation]
+softdepend:
+  - SkinsRestorer
+  - PlaceholderAPI

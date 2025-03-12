@@ -1,10 +1,11 @@
 package me.aglerr.donations.managers;
 
+import com.muhammaddaffa.mdlib.utils.Common;
+import com.muhammaddaffa.mdlib.utils.Config;
 import me.aglerr.donations.ConfigValue;
+import me.aglerr.donations.DonationPlugin;
 import me.aglerr.donations.objects.Product;
 import me.aglerr.donations.utils.Utils;
-import me.aglerr.mclibs.libs.Common;
-import me.aglerr.mclibs.libs.CustomConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -45,7 +46,7 @@ public class DonationGoal {
     }
 
     public static void onLoad(){
-        FileConfiguration data = ConfigManager.DATA.getConfig();
+        FileConfiguration data = DonationPlugin.DATA.getConfig();
         // Initialize the donation goal
         donationGoal = ConfigValue.DONATION_GOAL_AMOUNT;
         // Initialize the current donation
@@ -53,12 +54,17 @@ public class DonationGoal {
     }
 
     public static void onSave(){
-        CustomConfig data = ConfigManager.DATA;
+        Config data = DonationPlugin.DATA;
         FileConfiguration config = data.getConfig();
+
         // Set the current donation to the data
         config.set("donationGoal", currentDonation);
         // Finally save the config
         data.saveConfig();
+    }
+
+    public static void reset() {
+        currentDonation = 0;
     }
 
     public static String getDonationGoal(){

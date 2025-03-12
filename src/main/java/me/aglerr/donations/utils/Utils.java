@@ -1,6 +1,8 @@
 package me.aglerr.donations.utils;
 
 import com.google.common.base.Strings;
+import com.muhammaddaffa.mdlib.utils.Common;
+import com.muhammaddaffa.mdlib.utils.Logger;
 import me.aglerr.donations.ConfigValue;
 import me.aglerr.donations.DonationPlugin;
 import me.aglerr.donations.libs.ImageChar;
@@ -8,8 +10,7 @@ import me.aglerr.donations.libs.ImageMessage;
 import me.aglerr.donations.libs.ImageMessageHex;
 import me.aglerr.donations.managers.DependencyManager;
 import me.aglerr.donations.objects.QueueDonation;
-import me.aglerr.mclibs.libs.Common;
-import me.aglerr.mclibs.minedown.MineDown;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.skinsrestorer.api.SkinsRestorer;
 import net.skinsrestorer.api.SkinsRestorerProvider;
 import net.skinsrestorer.api.property.SkinIdentifier;
@@ -102,7 +103,7 @@ public class Utils {
                             // Now, loop through all the messages
                             ConfigValue.donationNoAvatar(donation).forEach(message ->
                                     // Finally send the messages
-                                    player.spigot().sendMessage(MineDown.parse(message))));
+                                    player.spigot().sendMessage(new TextComponent(Common.color(message)))));
                 } else {
                     // Broadcast the message without hex color and not centered
                     ConfigValue.donationNoAvatar(donation).forEach(message ->
@@ -110,7 +111,7 @@ public class Utils {
                 }
             }
         } catch (IOException ex) {
-            Common.log("&cFailed to send a broadcast donation!");
+            Logger.info("&cFailed to send a broadcast donation!");
             ex.printStackTrace();
         }
     }

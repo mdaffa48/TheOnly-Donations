@@ -1,12 +1,11 @@
 package me.aglerr.donations;
 
+import com.muhammaddaffa.mdlib.MDLib;
+import com.muhammaddaffa.mdlib.utils.Config;
 import me.aglerr.donations.commands.MainCommand;
 import me.aglerr.donations.managers.*;
 import me.aglerr.donations.metrics.Metrics;
 import me.aglerr.donations.utils.Utils;
-import me.aglerr.mclibs.MCLibs;
-import me.aglerr.mclibs.libs.Common;
-import me.aglerr.mclibs.libs.ConfigUpdater;
 import net.skinsrestorer.api.SkinsRestorer;
 import net.skinsrestorer.api.SkinsRestorerProvider;
 import org.bukkit.Bukkit;
@@ -18,6 +17,8 @@ import java.util.ArrayList;
 
 public class DonationPlugin extends JavaPlugin {
 
+    public static Config DEFAULT_CONFIG, PRODUCT_CONFIG, DATA;
+
     public static boolean HEX_AVAILABLE = false;
 
     private final ProductManager productManager = new ProductManager();
@@ -26,13 +27,16 @@ public class DonationPlugin extends JavaPlugin {
     private static DonationPlugin instance;
 
     @Override
+    public void onLoad() {
+        MDLib.inject(this);
+    }
+
+    @Override
     public void onEnable(){
         // Initialize the instance
         instance = this;
         // Injecting the libs
-        MCLibs.init(this);
-        // Set the prefix of console messages
-        Common.setPrefix("[TheOnly-Donations]");
+        MDLib.onEnable(this);
         // Send startup logo
         Utils.sendStartupLogo();
         // Initialize the queue manager
@@ -40,9 +44,7 @@ public class DonationPlugin extends JavaPlugin {
         // Check the dependencies
         DependencyManager.checkDependencies();
         // Initialize all config
-        ConfigManager.initialize();
-        // Try to update the configuration
-        updateConfig();
+        InitializeConfig();
         // Initialize all config value
         ConfigValue.initialize();
         // Load all products
@@ -50,24 +52,37 @@ public class DonationPlugin extends JavaPlugin {
         // Load the donation goal
         DonationGoal.onLoad();
         // Register the command
-        new MainCommand(this).registerThisCommand();
+        new MainCommand();
         // bStats metrics
         new Metrics(this, 10310);
         HEX_AVAILABLE = Bukkit.getVersion().contains("1.16") ||
                 Bukkit.getVersion().contains("1.17") ||
                 Bukkit.getVersion().contains("1.18") ||
-                Bukkit.getVersion().contains("1.19");
+                Bukkit.getVersion().contains("1.19") ||
+                Bukkit.getVersion().contains("1.20") ||
+                Bukkit.getVersion().contains("1.21");
     }
 
     @Override
     public void onDisable(){
+        MDLib.shutdown();
         DonationGoal.onSave();
+    }
+
+    private void InitializeConfig() {
+        DEFAULT_CONFIG = new Config("config.yml", null, true);
+        DEFAULT_CONFIG.setShouldUpdate(true);
+        PRODUCT_CONFIG = new Config("product.yml", null, true);
+        DATA = new Config("data.yml", null, false);
+        // Update the Config if there's any changes
+        Config.updateConfigs();
+        Config.reload();
     }
 
     public void reloadEverything(){
         // Reload all configs
-        ConfigManager.CONFIG.reloadConfig();
-        ConfigManager.PRODUCT.reloadConfig();
+        DEFAULT_CONFIG.reloadConfig();
+        PRODUCT_CONFIG.reloadConfig();
         // Re-initialize the config value
         ConfigValue.initialize();
         // Reload all products
@@ -76,15 +91,10 @@ public class DonationPlugin extends JavaPlugin {
         DonationGoal.reloadDonationGoal();
     }
 
-    protected void updateConfig(){
-        File file = new File(this.getDataFolder(), "config.yml");
-        try{
-            ConfigUpdater.update(this, "config.yml", file, new ArrayList<>());
-        } catch (IOException e) {
-            Common.log("&cFailed to update the config.yml");
-            e.printStackTrace();
-        }
+    public void resetDonation() {
+        DonationGoal.reset();
     }
+
 
     public static DonationPlugin getInstance() {
         return instance;

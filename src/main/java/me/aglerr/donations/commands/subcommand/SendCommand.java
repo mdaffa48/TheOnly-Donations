@@ -1,12 +1,12 @@
 package me.aglerr.donations.commands.subcommand;
 
+import com.muhammaddaffa.mdlib.utils.Common;
 import me.aglerr.donations.ConfigValue;
 import me.aglerr.donations.DonationPlugin;
 import me.aglerr.donations.commands.abstraction.SubCommand;
 import me.aglerr.donations.managers.ProductManager;
 import me.aglerr.donations.managers.QueueManager;
 import me.aglerr.donations.objects.Product;
-import me.aglerr.mclibs.libs.Common;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -27,7 +27,7 @@ public class SendCommand extends SubCommand {
             return null;
         }
         if(args.length == 3){
-            return plugin.getProductManager().getListOfProductName();
+
         }
         return new ArrayList<>();
     }

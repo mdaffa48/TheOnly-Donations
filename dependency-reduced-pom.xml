@@ -3,12 +3,21 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.aglerr.donations</groupId>
   <artifactId>TheOnly-Donations</artifactId>
-  <version>3.0.3</version>
+  <version>4.0.0</version>
   <build>
+    <defaultGoal>clean package</defaultGoal>
     <plugins>
       <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <source>21</source>
+          <target>21</target>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.6.0</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -20,8 +29,8 @@
         <configuration>
           <relocations>
             <relocation>
-              <pattern>me.aglerr.mclibs</pattern>
-              <shadedPattern>me.aglerr.donation.mclibs</shadedPattern>
+              <pattern>me.aglerr.mdlib</pattern>
+              <shadedPattern>me.aglerr.donation.mdlib</shadedPattern>
             </relocation>
           </relocations>
         </configuration>
@@ -40,6 +49,10 @@
     <repository>
       <id>placeholderapi</id>
       <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+    </repository>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io/</url>
     </repository>
   </repositories>
   <dependencies>
@@ -63,7 +76,7 @@
     </dependency>
   </dependencies>
   <properties>
-    <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
+    <maven.compiler.source>8</maven.compiler.source>
   </properties>
 </project>
