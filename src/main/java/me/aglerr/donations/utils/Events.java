@@ -26,9 +26,11 @@ public class Events {
     }
 
     public static void eventEffects(){
-        FileConfiguration config = plugin.getConfig();
+        FileConfiguration config = DonationPlugin.DEFAULT_CONFIG.getConfig();
         // Return if the effect event is disabled
-        if(!config.getBoolean("events.effect.enabled")) return;
+        if(!config.getBoolean("events.effect.enabled")) {
+            return;
+        }
         // Get all the effects
         List<String> effects = config.getStringList("events.effect.effects");
         // Loop through all online players
@@ -55,7 +57,7 @@ public class Events {
     }
 
     public static void eventSound(){
-        FileConfiguration config = plugin.getConfig();
+        FileConfiguration config = DonationPlugin.DEFAULT_CONFIG.getConfig();
         // Get all the sounds
         List<String> sounds = config.getStringList("events.sounds");
         // Loop through all online players
@@ -85,7 +87,7 @@ public class Events {
     }
 
     public static void eventTitleBar(OfflinePlayer offlinePlayer){
-        FileConfiguration config = plugin.getConfig();
+        FileConfiguration config = DonationPlugin.DEFAULT_CONFIG.getConfig();
         // Return if the title bar event is disabled
         if(!config.getBoolean("events.titleBar.enabled")) return;
         // Get the title
@@ -108,7 +110,7 @@ public class Events {
     }
 
     public static void eventCommand(OfflinePlayer offlinePlayer){
-        FileConfiguration config = plugin.getConfig();
+        FileConfiguration config = DonationPlugin.DEFAULT_CONFIG.getConfig();
         // Return if the command event is disabled
         if(!config.getBoolean("events.command.enabled")) return;
         // Loop through all the commands
