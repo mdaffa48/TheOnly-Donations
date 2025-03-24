@@ -11,10 +11,6 @@ import net.skinsrestorer.api.SkinsRestorerProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class DonationPlugin extends JavaPlugin {
 
     public static Config DEFAULT_CONFIG, PRODUCT_CONFIG, DATA;

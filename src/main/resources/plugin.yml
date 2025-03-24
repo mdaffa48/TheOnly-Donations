@@ -1,7 +1,7 @@
-name: TheOnly-Donations
-version: 4.0.0
+name: AvatarDonation
+version: '${project.version}'
 api-version: 1.13
-author: aglerr, starfruit2210
+authors: [aglerr, starfruit2210]
 main: me.aglerr.donations.DonationPlugin
 softdepend:
   - SkinsRestorer
