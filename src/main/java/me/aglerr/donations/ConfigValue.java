@@ -9,6 +9,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.boss.BossBar;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.ArrayList;
@@ -38,8 +39,13 @@ public class ConfigValue {
 
     public static int PROGRESS_BAR_LENGTH;
     public static char PROGRESS_BAR_SYMBOL;
-    public static ChatColor PROGRESS_BAR_COMPLETED_COLOR;
-    public static ChatColor PROGRESS_BAR_UNCOMPLETED_COLOR;
+    public static String PROGRESS_BAR_COMPLETED_COLOR;
+    public static String PROGRESS_BAR_UNCOMPLETED_COLOR;
+
+    public static boolean PROGRESS_BOSSBAR_ENABLED;
+    public static String PROGRESS_BOSSBAR_TITLE;
+    public static String PROGRESS_BOSSBAR_COLOR;
+    public static String PROGRESS_BOSSBAR_STYLE;
 
     public static String NO_PERMISSION;
     public static String RELOAD;
@@ -67,13 +73,39 @@ public class ConfigValue {
         DONATION_GOAL_COMMANDS = config.getStringList("donationGoal.commandsOnReach");
         PROGRESS_BAR_LENGTH = config.getInt("donationGoal.progressBar.barLength");
         PROGRESS_BAR_SYMBOL = config.getString("donationGoal.progressBar.symbol").charAt(0);
-        PROGRESS_BAR_COMPLETED_COLOR = ChatColor.valueOf(config.getString("donationGoal.progressBar.completedColor"));
-        PROGRESS_BAR_UNCOMPLETED_COLOR = ChatColor.valueOf(config.getString("donationGoal.progressBar.notCompletedColor"));
+        PROGRESS_BAR_COMPLETED_COLOR = getColor(config.getString("donationGoal.progressBar.completedColor"));
+        PROGRESS_BAR_UNCOMPLETED_COLOR = getColor(config.getString("donationGoal.progressBar.notCompletedColor"));
         NO_PERMISSION = config.getString("messages.noPermission");
         RELOAD = config.getString("messages.reload");
         HELP_MESSAGES = config.getStringList("messages.help");
         INVALID_PRODUCT = config.getString("messages.invalidProduct");
         PERFORM_DONATION = config.getString("messages.performDonation");
+        PROGRESS_BOSSBAR_ENABLED = config.getBoolean("bossbar.enabled");
+        PROGRESS_BOSSBAR_TITLE = config.getString("bossbar.title");
+        PROGRESS_BOSSBAR_COLOR = config.getString("bossbar.color");
+        PROGRESS_BOSSBAR_STYLE = config.getString("bossbar.style");
+    }
+
+    private static String getColor(String colorName) {
+        return switch (colorName.toLowerCase()) {
+            case "aqua" -> "&b";
+            case "black" -> "&0";
+            case "blue" -> "&9";
+            case "dark_aqua" -> "&3";
+            case "dark_blue" -> "&1";
+            case "dark_gray" -> "&8";
+            case "dark_green" -> "&2";
+            case "dark_purple" -> "&5";
+            case "dark_red" -> "&4";
+            case "gold" -> "&6";
+            case "gray" -> "&7";
+            case "green" -> "&a";
+            case "light_purple" -> "&d";
+            case "red" -> "&c";
+            case "white" -> "&f";
+            case "yellow" -> "&e";
+            default -> "&c";
+        };
     }
 
     public static String[] donationAvatar(QueueDonation donation) {

@@ -69,59 +69,72 @@ public class Utils {
      * Note: this method should be run in async
      */
     public static void broadcastDonation(QueueDonation donation) {
+        BufferedImage image = null;
+
         try {
             // Get the URL
             URL url = new URL(getMinepicURL(donation.getPlayer()));
             // Get the buffered image from the url
-            BufferedImage image = ImageIO.read(url);
-            // Check if broadcast avatar is enabled
-            if(ConfigValue.BROADCAST_AVATAR_ENABLED){
-                // Check if hex color is enabled
-                if(DonationPlugin.HEX_AVAILABLE){
-                    // Create an image message with hex color
-                    ImageMessageHex imageMessageHex = new ImageMessageHex(image, 8, ImageChar.BLOCK.getChar())
-                            // Append the additional text
-                            .appendText(ConfigValue.donationAvatar(donation));
-                    // Finally broadcast the messages
-                    imageMessageHex.sendToPlayers();
-                } else {
-                    // Now, we do the code if the hex color isn't available
-                    ImageMessage imageMessage = new ImageMessage(image, 8, ImageChar.BLOCK.getChar())
-                            // Append the additional text
-                            .appendText(ConfigValue.donationAvatar(donation));
-                    // Finally broadcast the message
-                    imageMessage.sendToPlayers();
-                }
-            } else {
-                //---------------------------------------------
-                // Code when avatar message is disabled
-                //---------------------------------------------
-                // Check if the hex color is enabled
-                if(DonationPlugin.HEX_AVAILABLE){
-                    // First, loop through all online players
-                    Bukkit.getOnlinePlayers().forEach(player ->
-                            // Now, loop through all the messages
-                            ConfigValue.donationNoAvatar(donation).forEach(message ->
-                                    // Finally send the messages
-                                    player.spigot().sendMessage(new TextComponent(Common.color(message)))));
-                } else {
-                    // Broadcast the message without hex color and not centered
-                    ConfigValue.donationNoAvatar(donation).forEach(message ->
-                            Bukkit.broadcastMessage(Common.color(message)));
-                }
+            image = ImageIO.read(url);
+        } catch (IOException e) {
+            Logger.info("Couldn't get player Image");
+            e.printStackTrace();
+
+            try {
+                URL fallbackUrl = new URL("https://minotar.net/helm/Steve/100.png");
+                image = ImageIO.read(fallbackUrl);
+            } catch (IOException ex) {
+                Logger.info("Couldn't get the steve Image");
+                ex.printStackTrace();
+                return;
             }
-        } catch (IOException ex) {
-            Logger.info("&cFailed to send a broadcast donation!");
-            ex.printStackTrace();
+
+        }
+        // Check if broadcast avatar is enabled
+        if(ConfigValue.BROADCAST_AVATAR_ENABLED){
+            // Check if hex color is enabled
+            if(DonationPlugin.HEX_AVAILABLE){
+                // Create an image message with hex color
+                ImageMessageHex imageMessageHex = new ImageMessageHex(image, 8, ImageChar.BLOCK.getChar())
+                        // Append the additional text
+                        .appendText(ConfigValue.donationAvatar(donation));
+                // Finally broadcast the messages
+                imageMessageHex.sendToPlayers();
+            } else {
+                // Now, we do the code if the hex color isn't available
+                ImageMessage imageMessage = new ImageMessage(image, 8, ImageChar.BLOCK.getChar())
+                        // Append the additional text
+                        .appendText(ConfigValue.donationAvatar(donation));
+                // Finally broadcast the message
+                imageMessage.sendToPlayers();
+            }
+        } else {
+            //---------------------------------------------
+            // Code when avatar message is disabled
+            //---------------------------------------------
+            // Check if the hex color is enabled
+            if(DonationPlugin.HEX_AVAILABLE){
+                // First, loop through all online players
+                Bukkit.getOnlinePlayers().forEach(player ->
+                        // Now, loop through all the messages
+                        ConfigValue.donationNoAvatar(donation).forEach(message ->
+                                // Finally send the messages
+                                player.spigot().sendMessage(new TextComponent(Common.color(message)))));
+            } else {
+                // Broadcast the message without hex color and not centered
+                ConfigValue.donationNoAvatar(donation).forEach(message ->
+                        Bukkit.broadcastMessage(Common.color(message)));
+            }
         }
     }
 
-    public static String getProgressBar(int current, int max, int totalBars, char symbol, ChatColor completedColor, ChatColor notCompletedColor){
+    public static String getProgressBar(int current, int max, int totalBars, char symbol, String completedColor, String notCompletedColor){
         float percent = (float) current/max;
         int progressBars = (int) (totalBars * percent);
 
-        return Strings.repeat("" + completedColor + symbol, progressBars) +
-                Strings.repeat("" + notCompletedColor + symbol, totalBars - progressBars);
+        return Strings.repeat(Common.color(completedColor) + symbol, progressBars) +
+                Strings.repeat(Common.color(notCompletedColor) + symbol, totalBars - progressBars);
     }
+
 
 }

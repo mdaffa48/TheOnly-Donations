@@ -23,11 +23,6 @@ public class DonationPlugin extends JavaPlugin {
     private static DonationPlugin instance;
 
     @Override
-    public void onLoad() {
-        MDLib.inject(this);
-    }
-
-    @Override
     public void onEnable(){
         // Initialize the instance
         instance = this;
@@ -47,8 +42,9 @@ public class DonationPlugin extends JavaPlugin {
         productManager.loadProduct();
         // Load the donation goal
         DonationGoal.onLoad();
+        DonationBossBar.runnableBossBar();
         // Register the command
-        new MainCommand();
+        MDLib.getCommandRegistry().register(new MainCommand());
         // bStats metrics
         new Metrics(this, 10310);
         HEX_AVAILABLE = Bukkit.getVersion().contains("1.16") ||
@@ -77,14 +73,22 @@ public class DonationPlugin extends JavaPlugin {
 
     public void reloadEverything(){
         // Reload all configs
-        DEFAULT_CONFIG.reloadConfig();
-        PRODUCT_CONFIG.reloadConfig();
+        Config.reload();
         // Re-initialize the config value
         ConfigValue.initialize();
         // Reload all products
         productManager.reloadProduct();
+
+        if (DonationBossBar.getBossBar() != null) {
+            DonationBossBar.getBossBar().removeAll(); // Remove all players from old BossBar
+        }
+
+        // Reset BossBar instance
+        DonationBossBar.resetBossBar();
         // Reload the donation goal
         DonationGoal.reloadDonationGoal();
+        //
+        DonationBossBar.runnableBossBar();
     }
 
     public void resetDonation() {

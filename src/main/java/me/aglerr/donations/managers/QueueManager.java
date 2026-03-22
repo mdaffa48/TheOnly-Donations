@@ -23,6 +23,8 @@ public class QueueManager {
 
     public void addQueue(OfflinePlayer player, @NotNull Product product){
         this.queueDonations.add(new QueueDonation(player, product));
+
+        product.execute(player);
     }
 
     public void addQueue(QueueDonation donation){

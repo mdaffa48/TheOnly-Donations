@@ -10,6 +10,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class DonationAPI {
 
     /**
@@ -55,11 +57,11 @@ public class DonationAPI {
      * @param price - the price of the product
      * @param save - should we save the product to the configuration? (Recommended if you want product persist on restart)
      */
-    public static Product createProduct(String name, String displayName, double price, boolean save){
+    public static Product createProduct(String name, String displayName, double price, List<String> command, boolean save){
         // Get the product manager
         ProductManager productManager = DonationPlugin.getInstance().getProductManager();
         // Create the product object
-        Product product = new Product(name, displayName, price);
+        Product product = new Product(name, displayName, price, command);
         // Add product to the list
         productManager.addProduct(name, product);
         // Should we save the product to the configuration?

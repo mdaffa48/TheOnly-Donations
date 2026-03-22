@@ -20,6 +20,18 @@ options:
 #
 # Are you interested in using hex color? Check the wiki for example!
 # Link: https://aglerr.gitbook.io/wiki/theonly-series/the-only-donations/plugins-files#example-usage
+
+# You can make the donation goal always appear as a BossBar
+bossbar:
+  enabled: true # Enable this to use this feature
+  # There are 3 Placeholder which is,
+  # {current} is to show the current donation
+  # {goal} is to show how much is the donation goal, you can see it at donationGoal:
+  # {percentage} You can see what is the percentage at the Donation Goal
+  title: "Current Donation Goal {current}/{goal}"
+  color: "GREEN" # Color: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
+  style: "SEGMENTED_10" # Segment: SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+
 donationsMessage:
   messageWithAvatar:
     enabled: true

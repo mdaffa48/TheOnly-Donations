@@ -2,6 +2,12 @@ products:
   vip: # The product name
     displayName: "&aVIP Rank" # The product display name
     price: 9.99 # The product price
+    command:
+      - "eco give {player} 100"
+      - "give {player} diamond 2"
   vip+:
     displayName: "&aVIP&6+ &aRank"
     price: 15
+    command:
+      - "eco give {player} 100"
+      - "give {player} diamond 2"
